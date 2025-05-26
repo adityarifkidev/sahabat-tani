@@ -416,9 +416,33 @@ export default function HomePage() {
             <div>
               <Badge className="bg-orange-100 text-orange-600 mb-4">Lokasi</Badge>
               <h2 className="text-3xl font-bold mb-6 text-gray-800">Kunjungi Toko Kami</h2>
-              <div className="bg-gray-200 rounded-2xl h-64 mb-6 flex items-center justify-center">
-                <MapPin className="w-12 h-12 text-gray-400" />
-              </div>
+              <a
+                href="https://maps.app.goo.gl/nFagmhdXWFYmYsr96"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block rounded-2xl overflow-hidden shadow-lg mb-6 hover:shadow-xl transition-shadow group"
+              >
+                <div className="relative">
+                  <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3953.234!2d111.5234!3d-7.6298!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e79be0c7c8b1234%3A0x5678901234abcdef!2sJl.%20Urip%20Sumoharjo%20No.52%2C%20Mangkujayan%2C%20Kec.%20Mangkujayan%2C%20Kota%20Madiun%2C%20Jawa%20Timur%2063172!5e0!3m2!1sid!2sid!4v1234567890123!5m2!1sid!2sid"
+                    width="100%"
+                    height="300"
+                    style={{ border: 0 }}
+                    allowFullScreen=""
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    className="w-full h-64 pointer-events-none group-hover:pointer-events-auto"
+                  ></iframe>
+
+                  {/* Overlay with click instruction */}
+                  <div className="absolute inset-0 bg-black/20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                    <div className="bg-white/90 px-4 py-2 rounded-lg flex items-center space-x-2">
+                      <MapPin className="w-5 h-5 text-orange-500" />
+                      <span className="text-gray-800 font-medium">Klik untuk buka di Google Maps</span>
+                    </div>
+                  </div>
+                </div>
+              </a>
               <div className="space-y-2 text-gray-600">
                 <p>Jl. Urip Sumoharjo No.52, Mangkujayan</p>
                 <p>Kec. Mangkujayan, Kota Madiun, Jawa Timur 63172</p>
