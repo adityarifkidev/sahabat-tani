@@ -1,3 +1,5 @@
+"use client"
+import { useState } from "react"
 import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
@@ -14,9 +16,21 @@ import {
   Award,
   Calendar,
   ShoppingCart,
+  Menu,
+  X,
 } from "lucide-react"
 
 export default function HomePage() {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen)
+  }
+
+  const closeMobileMenu = () => {
+    setIsMobileMenuOpen(false)
+  }
+
   return (
     <div className="min-h-screen bg-white">
       {/* Header */}
@@ -24,10 +38,19 @@ export default function HomePage() {
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center space-x-2">
-              <Image src="/images/logo.png" alt="Sahabat Tani Logo" width={40} height={40} className="object-contain" />
-              <span className="font-bold text-xl text-gray-800">Sahabat Tani</span>
+              <a href="#hero" className="flex items-center space-x-2 hover:opacity-80 transition-opacity">
+                <Image
+                  src="/images/logo.png"
+                  alt="Sahabat Tani Logo"
+                  width={40}
+                  height={40}
+                  className="object-contain"
+                />
+                <span className="font-bold text-xl text-gray-800">Sahabat Tani</span>
+              </a>
             </div>
 
+            {/* Desktop Navigation */}
             <nav className="hidden md:flex space-x-8">
               <a href="#about" className="text-gray-600 hover:text-orange-500 transition-colors">
                 About Us
@@ -46,17 +69,96 @@ export default function HomePage() {
               </a>
             </nav>
 
-            <a
-              href="https://wa.me/6281217172544?text=Halo%20Sahabat%20Tani%2C%20saya%20ingin%20bertanya%20tentang%20produk%20Anda."
-              target="_blank"
-              rel="noopener noreferrer"
+            {/* Desktop Contact Button */}
+            <div className="hidden md:block">
+              <a
+                href="https://wa.me/6281217172544?text=Halo%20Sahabat%20Tani%2C%20saya%20ingin%20bertanya%20tentang%20produk%20Anda."
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Button className="bg-orange-500 hover:bg-orange-600 text-white">
+                  <Phone className="w-4 h-4 mr-2" />
+                  Hubungi Kami
+                </Button>
+              </a>
+            </div>
+
+            {/* Mobile Hamburger Button */}
+            <button
+              onClick={toggleMobileMenu}
+              className="md:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors"
+              aria-label="Toggle mobile menu"
             >
-              <Button className="bg-orange-500 hover:bg-orange-600 text-white">
-                <Phone className="w-4 h-4 mr-2" />
-                Hubungi Kami
-              </Button>
-            </a>
+              {isMobileMenuOpen ? <X className="w-6 h-6 text-gray-600" /> : <Menu className="w-6 h-6 text-gray-600" />}
+            </button>
           </div>
+
+          {/* Mobile Navigation Menu */}
+          {isMobileMenuOpen && (
+            <>
+              {/* Overlay */}
+              <div className="fixed inset-0 bg-black/50 z-40 md:hidden" onClick={closeMobileMenu}></div>
+
+              {/* Mobile Menu */}
+              <div className="absolute top-full left-0 right-0 bg-white border-b shadow-lg z-50 md:hidden">
+                <nav className="container mx-auto px-4 py-4">
+                  <div className="flex flex-col space-y-4">
+                    <a
+                      href="#about"
+                      onClick={closeMobileMenu}
+                      className="text-gray-600 hover:text-orange-500 transition-colors py-2 border-b border-gray-100"
+                    >
+                      About Us
+                    </a>
+                    <a
+                      href="#products"
+                      onClick={closeMobileMenu}
+                      className="text-gray-600 hover:text-orange-500 transition-colors py-2 border-b border-gray-100"
+                    >
+                      Produk
+                    </a>
+                    <a
+                      href="#gallery"
+                      onClick={closeMobileMenu}
+                      className="text-gray-600 hover:text-orange-500 transition-colors py-2 border-b border-gray-100"
+                    >
+                      Galeri
+                    </a>
+                    <a
+                      href="#faq"
+                      onClick={closeMobileMenu}
+                      className="text-gray-600 hover:text-orange-500 transition-colors py-2 border-b border-gray-100"
+                    >
+                      FAQ
+                    </a>
+                    <a
+                      href="#contact"
+                      onClick={closeMobileMenu}
+                      className="text-gray-600 hover:text-orange-500 transition-colors py-2 border-b border-gray-100"
+                    >
+                      Kontak
+                    </a>
+
+                    {/* Mobile Contact Button */}
+                    <div className="pt-4">
+                      <a
+                        href="https://wa.me/6281217172544?text=Halo%20Sahabat%20Tani%2C%20saya%20ingin%20bertanya%20tentang%20produk%20Anda."
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={closeMobileMenu}
+                        className="block"
+                      >
+                        <Button className="w-full bg-orange-500 hover:bg-orange-600 text-white">
+                          <Phone className="w-4 h-4 mr-2" />
+                          Hubungi Kami
+                        </Button>
+                      </a>
+                    </div>
+                  </div>
+                </nav>
+              </div>
+            </>
+          )}
         </div>
       </header>
 
