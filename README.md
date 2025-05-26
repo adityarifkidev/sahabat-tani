@@ -7,6 +7,7 @@ First, run the development server:
 ```bash
 # after clone
 npm install
+# then u can run
 npm run dev
 # or
 yarn dev
