@@ -52,6 +52,42 @@ function useScrollAnimation() {
   return [ref, isVisible]
 }
 
+// Custom hook for active section detection
+function useActiveSection() {
+  const [activeSection, setActiveSection] = useState("")
+
+  useEffect(() => {
+    const sections = ["hero", "about", "products", "gallery", "faq", "contact"]
+    const sectionElements = sections.map((id) => document.getElementById(id)).filter(Boolean)
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id)
+          }
+        })
+      },
+      {
+        threshold: 0.3,
+        rootMargin: "-80px 0px -80px 0px",
+      },
+    )
+
+    sectionElements.forEach((section) => {
+      if (section) observer.observe(section)
+    })
+
+    return () => {
+      sectionElements.forEach((section) => {
+        if (section) observer.unobserve(section)
+      })
+    }
+  }, [])
+
+  return activeSection
+}
+
 // Animation wrapper component
 function AnimatedSection({ children, className = "", delay = 0, animation = "fadeInUp" }) {
   const [ref, isVisible] = useScrollAnimation()
@@ -78,6 +114,7 @@ function AnimatedSection({ children, className = "", delay = 0, animation = "fad
 
 export default function HomePage() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const activeSection = useActiveSection()
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen)
@@ -113,38 +150,68 @@ export default function HomePage() {
             <nav className="hidden md:flex space-x-8">
               <a
                 href="#about"
-                className="text-gray-600 hover:text-orange-500 transition-all duration-300 hover:scale-105 relative group"
+                className={`text-gray-600 hover:text-orange-500 transition-all duration-300 hover:scale-105 relative group ${
+                  activeSection === "about" ? "text-orange-500" : ""
+                }`}
               >
                 About Us
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-orange-500 transition-all duration-300 group-hover:w-full"></span>
+                <span
+                  className={`absolute -bottom-1 left-0 h-0.5 bg-orange-500 transition-all duration-300 ${
+                    activeSection === "about" ? "w-full" : "w-0 group-hover:w-full"
+                  }`}
+                ></span>
               </a>
               <a
                 href="#products"
-                className="text-gray-600 hover:text-orange-500 transition-all duration-300 hover:scale-105 relative group"
+                className={`text-gray-600 hover:text-orange-500 transition-all duration-300 hover:scale-105 relative group ${
+                  activeSection === "products" ? "text-orange-500" : ""
+                }`}
               >
                 Produk
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-orange-500 transition-all duration-300 group-hover:w-full"></span>
+                <span
+                  className={`absolute -bottom-1 left-0 h-0.5 bg-orange-500 transition-all duration-300 ${
+                    activeSection === "products" ? "w-full" : "w-0 group-hover:w-full"
+                  }`}
+                ></span>
               </a>
               <a
                 href="#gallery"
-                className="text-gray-600 hover:text-orange-500 transition-all duration-300 hover:scale-105 relative group"
+                className={`text-gray-600 hover:text-orange-500 transition-all duration-300 hover:scale-105 relative group ${
+                  activeSection === "gallery" ? "text-orange-500" : ""
+                }`}
               >
                 Galeri
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-orange-500 transition-all duration-300 group-hover:w-full"></span>
+                <span
+                  className={`absolute -bottom-1 left-0 h-0.5 bg-orange-500 transition-all duration-300 ${
+                    activeSection === "gallery" ? "w-full" : "w-0 group-hover:w-full"
+                  }`}
+                ></span>
               </a>
               <a
                 href="#faq"
-                className="text-gray-600 hover:text-orange-500 transition-all duration-300 hover:scale-105 relative group"
+                className={`text-gray-600 hover:text-orange-500 transition-all duration-300 hover:scale-105 relative group ${
+                  activeSection === "faq" ? "text-orange-500" : ""
+                }`}
               >
                 FAQ
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-orange-500 transition-all duration-300 group-hover:w-full"></span>
+                <span
+                  className={`absolute -bottom-1 left-0 h-0.5 bg-orange-500 transition-all duration-300 ${
+                    activeSection === "faq" ? "w-full" : "w-0 group-hover:w-full"
+                  }`}
+                ></span>
               </a>
               <a
                 href="#contact"
-                className="text-gray-600 hover:text-orange-500 transition-all duration-300 hover:scale-105 relative group"
+                className={`text-gray-600 hover:text-orange-500 transition-all duration-300 hover:scale-105 relative group ${
+                  activeSection === "contact" ? "text-orange-500" : ""
+                }`}
               >
                 Kontak
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-orange-500 transition-all duration-300 group-hover:w-full"></span>
+                <span
+                  className={`absolute -bottom-1 left-0 h-0.5 bg-orange-500 transition-all duration-300 ${
+                    activeSection === "contact" ? "w-full" : "w-0 group-hover:w-full"
+                  }`}
+                ></span>
               </a>
             </nav>
 
@@ -185,37 +252,62 @@ export default function HomePage() {
                     <a
                       href="#about"
                       onClick={closeMobileMenu}
-                      className="text-gray-600 hover:text-orange-500 transition-colors py-2 border-b border-gray-100 hover:translate-x-2 transition-transform duration-300"
+                      className={`text-gray-600 hover:text-orange-500 transition-colors py-2 border-b border-gray-100 hover:translate-x-2 transition-transform duration-300 relative ${
+                        activeSection === "about" ? "text-orange-500 translate-x-2" : ""
+                      }`}
                     >
                       About Us
+                      {activeSection === "about" && (
+                        <span className="absolute left-0 top-0 w-1 h-full bg-orange-500 rounded-r-full"></span>
+                      )}
                     </a>
                     <a
                       href="#products"
                       onClick={closeMobileMenu}
-                      className="text-gray-600 hover:text-orange-500 transition-colors py-2 border-b border-gray-100 hover:translate-x-2 transition-transform duration-300"
+                      className={`text-gray-600 hover:text-orange-500 transition-colors py-2 border-b border-gray-100 hover:translate-x-2 transition-transform duration-300 relative ${
+                        activeSection === "products" ? "text-orange-500 translate-x-2" : ""
+                      }`}
                     >
                       Produk
+                      {activeSection === "products" && (
+                        <span className="absolute left-0 top-0 w-1 h-full bg-orange-500 rounded-r-full"></span>
+                      )}
                     </a>
                     <a
                       href="#gallery"
                       onClick={closeMobileMenu}
-                      className="text-gray-600 hover:text-orange-500 transition-colors py-2 border-b border-gray-100 hover:translate-x-2 transition-transform duration-300"
+                      className={`text-gray-600 hover:text-orange-500 transition-colors py-2 border-b border-gray-100 hover:translate-x-2 transition-transform duration-300 relative ${
+                        activeSection === "gallery" ? "text-orange-500 translate-x-2" : ""
+                      }`}
                     >
                       Galeri
+                      {activeSection === "gallery" && (
+                        <span className="absolute left-0 top-0 w-1 h-full bg-orange-500 rounded-r-full"></span>
+                      )}
                     </a>
                     <a
                       href="#faq"
                       onClick={closeMobileMenu}
-                      className="text-gray-600 hover:text-orange-500 transition-colors py-2 border-b border-gray-100 hover:translate-x-2 transition-transform duration-300"
+                      className={`text-gray-600 hover:text-orange-500 transition-colors py-2 border-b border-gray-100 hover:translate-x-2 transition-transform duration-300 relative ${
+                        activeSection === "faq" ? "text-orange-500 translate-x-2" : ""
+                      }`}
                     >
                       FAQ
+                      {activeSection === "faq" && (
+                        <span className="absolute left-0 top-0 w-1 h-full bg-orange-500 rounded-r-full"></span>
+                      )}
                     </a>
                     <a
                       href="#contact"
                       onClick={closeMobileMenu}
-                      className="text-gray-600 hover:text-orange-500 transition-colors py-2 border-b border-gray-100 hover:translate-x-2 transition-transform duration-300"
+                      className={`text-gray-600 hover:text-orange-500 transition-colors py-2 border-b border-gray-100 hover:translate-x-2 transition-transform duration-300 relative ${
+                        activeSection === "contact" ? "text-orange-500 translate-x-2" : ""
+                      }`}
                     >
                       Kontak
+                      {activeSection === "contact" && (
+                        <span className="absolute left-0 top-0 w-1 h-full bg-orange-500 rounded-r-full"></span>
+                      )}
                     </a>
 
                     {/* Mobile Contact Button */}
@@ -858,7 +950,7 @@ export default function HomePage() {
 
             <div className="border-t border-white/20 mt-12 pt-8 text-center">
               <p className="text-white/60 hover:text-white/80 transition-colors duration-300">
-                Copyright © 2024 by Toko Sahabat Tani
+                Copyright © 2024-2025 by Toko Sahabat Tani
               </p>
             </div>
           </AnimatedSection>
