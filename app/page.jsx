@@ -223,7 +223,7 @@ export default function HomePage() {
               <div className="w-16 h-16 bg-orange-500 rounded-full mx-auto mb-4 flex items-center justify-center">
                 <ShoppingCart className="w-8 h-8 text-white" />
               </div>
-              <div className="text-3xl font-bold text-gray-800 mb-2">1.8 Ribu</div>
+              <div className="text-3xl font-bold text-gray-800 mb-2">5 Ribu</div>
               <p className="text-gray-600">Produk Terjual</p>
             </div>
 
@@ -234,6 +234,64 @@ export default function HomePage() {
               <div className="text-3xl font-bold text-gray-800 mb-2">39 Tahun</div>
               <p className="text-gray-600">Terpercaya Melayani Konsumen</p>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Video Section */}
+      <section className="py-20">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16">
+            <Badge className="bg-orange-100 text-orange-600 mb-4">Video</Badge>
+            <h2 className="text-3xl lg:text-4xl font-bold mb-4 text-gray-800">Lihat Produk Kami dalam Aksi</h2>
+            <p className="text-gray-600 max-w-2xl mx-auto">
+              Saksikan langsung kualitas dan performa alat pertanian yang kami jual melalui video demonstrasi
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+            {[
+              {
+                id: "QEtuIhrHgP8",
+                title: "Demo Mesin Diesel Sahabat Tani",
+              },
+              {
+                id: "d4OZ886iIk4",
+                title: "Generator Set Berkualitas",
+              },
+              {
+                id: "qseUHfM8ssU",
+                title: "Alat Pertanian Modern",
+              },
+            ].map((video, index) => (
+              <div key={index} className="relative rounded-2xl overflow-hidden shadow-lg bg-gray-900">
+                <div className="aspect-[9/16]">
+                  <iframe
+                    src={`https://www.youtube.com/embed/${video.id}`}
+                    title={video.title}
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowFullScreen
+                    className="w-full h-full"
+                  ></iframe>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="text-center">
+            <p className="text-gray-600 mb-4">Ingin melihat lebih banyak video produk kami?</p>
+            <a href="https://www.youtube.com/@sahabattanimadiun/shorts" target="_blank" rel="noopener noreferrer">
+              <Button
+                variant="outline"
+                className="border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-white"
+              >
+                <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
+                </svg>
+                Kunjungi Channel YouTube Kami
+              </Button>
+            </a>
           </div>
         </div>
       </section>
@@ -313,24 +371,53 @@ export default function HomePage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mb-12">
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-6 mb-12">
             {[
-              "Mesin Diesel",
-              "Generator",
-              "Alat Teknik",
-              "Power Tools",
-              "Traktor",
-              "Pompa Air",
-              "Mesin Potong",
-              "Alat Konstruksi",
+              {
+                name: "Chainshow",
+                image: "/images/chainsow.png",
+                icon: "🚜",
+              },
+              {
+                name: "Cultivator",
+                image: "/images/cultivator.jpg",
+                icon: "⚡",
+              },
+              {
+                name: "Mesin Penggerak",
+                image: "/images/mesin penggerak.jpg",
+                icon: "🔧",
+              },
+              {
+                name: "Pemotong Rumput",
+                image: "/images/pemotong rumput.jpg",
+                icon: "🔨",
+              },
+              {
+                name: "Genset",
+                image: "/images/genset.jpg",
+                icon: "🚜",
+              },
+              {
+                name: "Sprayer",
+                image: "/images/sprayer.jpg",
+                icon: "💧",
+              },
             ].map((product, index) => (
               <Card key={index} className="hover:shadow-lg transition-shadow cursor-pointer group">
                 <CardContent className="p-6 text-center">
-                  <div className="w-16 h-16 bg-orange-100 rounded-full mx-auto mb-4 flex items-center justify-center group-hover:bg-orange-500 transition-colors">
-                    <span className="text-2xl group-hover:text-white">🔧</span>
+                  <div className="relative mb-4">
+                    <Image
+                      src={product.image || "/placeholder.svg"}
+                      alt={product.name}
+                      width={200}
+                      height={200}
+                      className="w-full h-full object-contain rounded-lg"
+                    />
+                    <div className="absolute inset-0 bg-orange-500/10 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity"></div>
                   </div>
                   <h3 className="font-semibold text-gray-800 group-hover:text-orange-500 transition-colors">
-                    {product}
+                    {product.name}
                   </h3>
                 </CardContent>
               </Card>
@@ -345,28 +432,83 @@ export default function HomePage() {
           <div className="text-center mb-16">
             <Badge className="bg-orange-100 text-orange-600 mb-4">Galeri</Badge>
             <h2 className="text-3xl lg:text-4xl font-bold mb-4 text-gray-800">Lihat Koleksi Produk Kami</h2>
+            <p className="text-gray-600 max-w-2xl mx-auto">
+              Dokumentasi produk-produk berkualitas yang tersedia di Sahabat Tani Madiun
+            </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[1, 2, 3, 4, 5, 6].map((item) => (
-              <Card key={item} className="overflow-hidden hover:shadow-lg transition-shadow">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-9">
+            {[
+              {
+                src: "/images/galeri1.jpg",
+                alt: "Mesin Diesel Berkualitas",
+                title: "Mesin Cultivator FIRMAN FTL820 Traktor Bajak Mini Firman FTL820",
+                description: "Ideal digunakan di sawah kecil, ladang pekarangan, kebun sayur, atau area yang sulit dijangkau",
+              },
+              {
+                src: "/images/galeri2.jpg",
+                alt: "Genset Matari MGP2900",
+                title: "Genset Matari MGP2900",
+                description: "Genset Matari MGP2900 merupakan pilihan yang tepat bagi Anda yang membutuhkan sumber listrik cadangan untuk peralatan rumah tangga ringan.",
+              },
+              {
+                src: "/images/galeri3.jpg",
+                alt: "Alat Teknik Modern",
+                title: "Mesin Dangir Dengir Jagung KENZA KZ28W Mesin Penggembur Tanah di Lahan Jagung",
+                description: "Mesin Penggembur Tanah atau Dangir Jagung",
+              },
+              {
+                src: "/images/galeri4.jpg",
+                alt: "Power Tools Profesional",
+                title: "STIHL Chainsaw MS 180 16 inch / mesin potong kayu MS180",
+                description: " adalah gergaji mesin ringan yang dirancang untuk penggunaan rumah tangga dan pemilik kebun. Dengan panjang batang 16 inci dan mesin 31,8 cc",
+              },
+              {
+                src: "/images/galeri5.jpg",
+                alt: "Traktor Pertanian",
+                title: "Mesin Kompresor angin listrik silent TIGER TSF 25",
+                description: "Sangat cocok untuk pengerjaan pengecatan menggunakan spraygun, penggunaan paku tembak (air nailer), pompa ban mobil, dll",
+              },
+              {
+                src: "/images/galeri6.jpg",
+                alt: "Pompa Air Efisien",
+                title: "Mesin Semprot Hama TASCO MD150 2TAK",
+                description: "ist blower TASCO MB 150 merupakan alat/mesin gendong atau punggung yang berfungsi untuk memecah cairan, larutan atau suspensi menjadi butiran-butiran cairan atau kabut.",
+              },
+            ].map((item, index) => (
+              <Card
+                key={index}
+                className="overflow-hidden hover:shadow-xl transition-all duration-300 group cursor-pointer"
+              >
                 <CardContent className="p-0">
-                  <div className="aspect-video bg-gray-200 relative overflow-hidden">
+                  <div className="relative overflow-hidden">
                     <Image
-                      src={`/placeholder.svg?height=300&width=400`}
-                      alt={`Gallery ${item}`}
+                      src={item.src || "/placeholder.svg"}
+                      alt={item.alt}
                       width={400}
                       height={300}
-                      className="object-cover hover:scale-105 transition-transform duration-300"
+                      className="object-cover hover:scale-110 transition-transform duration-500 group-hover:brightness-110"
                     />
-                  </div>
-                  <div className="p-4">
-                    <h3 className="font-semibold text-gray-800">Produk Berkualitas</h3>
-                    <p className="text-gray-600 text-sm">Alat pertanian modern dan terpercaya</p>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div className="absolute bottom-4 left-4 right-4 text-white transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 opacity-0 group-hover:opacity-100">
+                      <h3 className="font-bold text-lg mb-1">{item.title}</h3>
+                      <p className="text-sm text-white/90">{item.description}</p>
+                    </div>
                   </div>
                 </CardContent>
               </Card>
             ))}
+          </div>
+          <div className="text-center mt-12">
+            <p className="text-gray-600 mb-6">Ingin melihat produk lengkap dengan harga dan spesifikasi?</p>
+            <a href="https://www.tokopedia.com/sahabattanimadiun" target="_blank" rel="noopener noreferrer">
+              <Button size="lg" className="bg-orange-500 hover:bg-orange-600 text-white">
+                <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12.5 2C13.3 2 14 2.7 14 3.5V5H16C17.1 5 18 5.9 18 7V19C18 20.1 17.1 21 16 21H8C6.9 21 6 20.1 6 19V7C6 5.9 6.9 5 8 5H10V3.5C10 2.7 10.7 2 11.5 2H12.5M12 6.5C10.6 6.5 9.5 7.6 9.5 9S10.6 11.5 12 11.5 14.5 10.4 14.5 9 13.4 6.5 12 6.5M12 8C12.8 8 13.5 8.7 13.5 9.5S12.8 11 12 11 10.5 10.3 10.5 9.5 11.2 8 12 8M8 13.5H16V15H8V13.5M8 16H13V17.5H8V16Z" />
+                </svg>
+                Lihat Produk Lengkap di Tokopedia
+              </Button>
+            </a>
           </div>
         </div>
       </section>
@@ -588,6 +730,23 @@ export default function HomePage() {
                     />
                   </div>
                   <span>Shopee</span>
+                </a>
+                <a
+                  href="https://vt.tiktok.com/ZShKRJbYu/?page=Mall"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center space-x-3 text-white/80 hover:text-white transition-colors"
+                >
+                  <div className="w-8 h-8 bg-white rounded-lg flex items-center justify-center p-1">
+                    <Image
+                      src="/images/tiktok.png"
+                      alt="tiktok"
+                      width={24}
+                      height={24}
+                      className="object-contain"
+                    />
+                  </div>
+                  <span>TikTok Shop</span>
                 </a>
               </div>
             </div>
