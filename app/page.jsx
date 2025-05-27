@@ -495,10 +495,6 @@ export default function HomePage() {
                 alat pertanian modern. Dengan pengalaman puluhan tahun, kami menyediakan berbagai alat pertanian yang
                 lengkap dan mutakhir.
               </p>
-              <Button className="bg-orange-500 hover:bg-orange-600 text-white hover:scale-105 transition-all duration-300 hover:shadow-lg">
-                Pelajari Lebih Lanjut
-                <ChevronRight className="w-4 h-4 ml-2" />
-              </Button>
             </AnimatedSection>
 
             <AnimatedSection animation="fadeInRight" delay={200} className="relative">
@@ -621,6 +617,7 @@ export default function HomePage() {
                 title: "Mesin Cultivator FIRMAN FTL820 Traktor Bajak Mini Firman FTL820",
                 description:
                   "Ideal digunakan di sawah kecil, ladang pekarangan, kebun sayur, atau area yang sulit dijangkau",
+                tokopediaLink: "https://www.tokopedia.com/sahabattanimadiun/firman-mesin-bajak-sawah-ftl820-lahan-basah-kering?extParam=src%3Dshop%26whid%3D8886584",
               },
               {
                 src: "/images/galeri2.jpg",
@@ -628,12 +625,14 @@ export default function HomePage() {
                 title: "Genset Matari MGP2900",
                 description:
                   "Genset Matari MGP2900 merupakan pilihan yang tepat bagi Anda yang membutuhkan sumber listrik cadangan untuk peralatan rumah tangga ringan.",
+                tokopediaLink: "https://www.tokopedia.com/sahabattanimadiun/genset-matari-mgp2900-1200-watt?extParam=whid%3D8886584&aff_unique_id=&channel=others&chain_key=",
               },
               {
                 src: "/images/galeri3.jpg",
                 alt: "Alat Teknik Modern",
                 title: "Mesin Dangir Dengir Jagung KENZA KZ28W Mesin Penggembur Tanah di Lahan Jagung",
                 description: "Mesin Penggembur Tanah atau Dangir Jagung",
+                tokopediaLink: "https://www.tokopedia.com/sahabattanimadiun/mesin-dangir-dengir-jagung-kenza-kz38-double-gardan-mesin-penggembur?extParam=whid%3D8886584&aff_unique_id=&channel=others&chain_key=",
               },
               {
                 src: "/images/galeri4.jpg",
@@ -641,6 +640,7 @@ export default function HomePage() {
                 title: "STIHL Chainsaw MS 180 16 inch / mesin potong kayu MS180",
                 description:
                   " adalah gergaji mesin ringan yang dirancang untuk penggunaan rumah tangga dan pemilik kebun. Dengan panjang batang 16 inci dan mesin 31,8 cc",
+                tokopediaLink: "https://www.tokopedia.com/sahabattanimadiun/stihl-chainsaw-ms-180-16-inch-mesin-potong-kayu-ms180-gergaji-kayu?extParam=src%3Dshop%26whid%3D8886584&aff_unique_id=&channel=others&chain_key=",
               },
               {
                 src: "/images/galeri5.jpg",
@@ -648,6 +648,7 @@ export default function HomePage() {
                 title: "Mesin Kompresor angin listrik silent TIGER TSF 25",
                 description:
                   "Sangat cocok untuk pengerjaan pengecatan menggunakan spraygun, penggunaan paku tembak (air nailer), pompa ban mobil, dll",
+                tokopediaLink: "https://www.tokopedia.com/sahabattanimadiun/mesin-kompresor-angin-listrik-silent-tiger-tsf-25-tanpa-oli?extParam=whid%3D8886584%26src%3Dshop&aff_unique_id=&channel=others&chain_key=",
               },
               {
                 src: "/images/galeri6.jpg",
@@ -655,6 +656,7 @@ export default function HomePage() {
                 title: "Mesin Semprot Hama TASCO MD150 2TAK",
                 description:
                   "ist blower TASCO MB 150 merupakan alat/mesin gendong atau punggung yang berfungsi untuk memecah cairan, larutan atau suspensi menjadi butiran-butiran cairan atau kabut.",
+                tokopediaLink: "https://www.tokopedia.com/sahabattanimadiun/mesin-semprot-hama-tasco-md150-2tak-sprayer-mist-blower-duster-md150?extParam=src%3Dshop%26whid%3D8886584&aff_unique_id=&channel=others&chain_key=",
               },
             ].map((item, index) => (
               <AnimatedSection key={index} animation="scaleIn" delay={index * 100}>
@@ -674,6 +676,34 @@ export default function HomePage() {
                         <p className="text-sm text-white/90">{item.description}</p>
                       </div>
                     </div>
+
+                    {/* Button di bawah setiap gambar */}
+                    <div className="p-4">
+                      <a href={item.tokopediaLink} target="_blank" rel="noopener noreferrer">
+                        <Button
+                          size="sm"
+                          className="w-full bg-green-500 hover:bg-green-600 text-white hover:scale-105 transition-all duration-300 hover:shadow-lg"
+                        >
+                          <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12.5 2C13.3 2 14 2.7 14 3.5V5H16C17.1 5 18 5.9 18 7V19C18 20.1 17.1 21 16 21H8C6.9 21 6 20.1 6 19V7C6 5.9 6.9 5 8 5H10V3.5C10 2.7 10.7 2 11.5 2H12.5M12 6.5C10.6 6.5 9.5 7.6 9.5 9S10.6 11.5 12 11.5 14.5 10.4 14.5 9 13.4 6.5 12 6.5M12 8C12.8 8 13.5 8.7 13.5 9.5S12.8 11 12 11 10.5 10.3 10.5 9.5 11.2 8 12 8M8 13.5H16V15H8V13.5M8 16H13V17.5H8V16Z" />
+                          </svg>
+                          Lihat di Tokopedia
+                        </Button>
+                      </a>
+                    </div>
+                    {/* <div className="p-4">
+                      <a href={item.shopeeLink} target="_blank" rel="noopener noreferrer">
+                        <Button
+                          size="sm"
+                          className="w-full bg-orange-500 hover:bg-orange-600 text-white hover:scale-105 transition-all duration-300 hover:shadow-lg"
+                        >
+                          <svg className="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M12.5 2C13.3 2 14 2.7 14 3.5V5H16C17.1 5 18 5.9 18 7V19C18 20.1 17.1 21 16 21H8C6.9 21 6 20.1 6 19V7C6 5.9 6.9 5 8 5H10V3.5C10 2.7 10.7 2 11.5 2H12.5M12 6.5C10.6 6.5 9.5 7.6 9.5 9S10.6 11.5 12 11.5 14.5 10.4 14.5 9 13.4 6.5 12 6.5M12 8C12.8 8 13.5 8.7 13.5 9.5S12.8 11 12 11 10.5 10.3 10.5 9.5 11.2 8 12 8M8 13.5H16V15H8V13.5M8 16H13V17.5H8V16Z" />
+                          </svg>
+                          Lihat di Shopee
+                        </Button>
+                      </a>
+                    </div> */}
                   </CardContent>
                 </Card>
               </AnimatedSection>
@@ -682,17 +712,62 @@ export default function HomePage() {
 
           <AnimatedSection animation="fadeInUp" delay={600} className="text-center mt-12">
             <p className="text-gray-600 mb-6">Ingin melihat produk lengkap dengan harga dan spesifikasi?</p>
-            <a href="https://www.tokopedia.com/sahabattanimadiun" target="_blank" rel="noopener noreferrer">
-              <Button
-                size="lg"
-                className="bg-orange-500 hover:bg-orange-600 text-white hover:scale-105 transition-all duration-300 hover:shadow-lg"
-              >
-                <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M12.5 2C13.3 2 14 2.7 14 3.5V5H16C17.1 5 18 5.9 18 7V19C18 20.1 17.1 21 16 21H8C6.9 21 6 20.1 6 19V7C6 5.9 6.9 5 8 5H10V3.5C10 2.7 10.7 2 11.5 2H12.5M12 6.5C10.6 6.5 9.5 7.6 9.5 9S10.6 11.5 12 11.5 14.5 10.4 14.5 9 13.4 6.5 12 6.5M12 8C12.8 8 13.5 8.7 13.5 9.5S12.8 11 12 11 10.5 10.3 10.5 9.5 11.2 8 12 8M8 13.5H16V15H8V13.5M8 16H13V17.5H8V16Z" />
-                </svg>
-                Lihat Produk Lengkap di Tokopedia
-              </Button>
-            </a>
+
+            {/* Multiple marketplace buttons */}
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+              <a href="https://www.tokopedia.com/sahabattanimadiun" target="_blank" rel="noopener noreferrer">
+                <Button
+                  size="lg"
+                  className="bg-green-500 hover:bg-green-600 text-white hover:scale-105 transition-all duration-300 hover:shadow-lg w-full sm:w-auto"
+                >
+                  <div className="w-5 h-5 mr-2 bg-white rounded flex items-center justify-center">
+                    <Image
+                      src="/images/tokopedia.png"
+                      alt="Tokopedia"
+                      width={16}
+                      height={16}
+                      className="object-contain"
+                    />
+                  </div>
+                  Belanja di Tokopedia
+                </Button>
+              </a>
+
+              <a href="https://shopee.co.id/sahabattanimadiun" target="_blank" rel="noopener noreferrer">
+                <Button
+                  size="lg"
+                  className="bg-orange-600 hover:bg-orange-700 text-white hover:scale-105 transition-all duration-300 hover:shadow-lg w-full sm:w-auto"
+                >
+                  <div className="w-5 h-5 mr-2 bg-white rounded flex items-center justify-center">
+                    <Image src="/images/shopee.png" alt="Shopee" width={16} height={16} className="object-contain" />
+                  </div>
+                  Belanja di Shopee
+                </Button>
+              </a>
+
+              <a href="https://vt.tiktok.com/ZShKRJbYu/?page=Mall" target="_blank" rel="noopener noreferrer">
+                <Button
+                  size="lg"
+                  className="bg-black hover:bg-gray-800 text-white hover:scale-105 transition-all duration-300 hover:shadow-lg w-full sm:w-auto"
+                >
+                  <div className="w-5 h-5 mr-2 bg-white rounded flex items-center justify-center">
+                    <Image
+                      src="/images/tiktok.png"
+                      alt="TikTok Shop"
+                      width={16}
+                      height={16}
+                      className="object-contain"
+                    />
+                  </div>
+                  Belanja di TikTok Shop
+                </Button>
+              </a>
+            </div>
+
+            {/* Additional info */}
+            <div className="mt-6 text-sm text-gray-500">
+              <p>💡 Tip: Bandingkan harga di ketiga platform untuk mendapatkan penawaran terbaik!</p>
+            </div>
           </AnimatedSection>
         </div>
       </section>
