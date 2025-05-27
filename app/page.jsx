@@ -409,15 +409,13 @@ export default function HomePage() {
       {/* Video Section */}
       <section className="py-20">
         <div className="container mx-auto px-4">
-          <AnimatedSection animation="fadeInUp" className="text-center mb-16">
-            <Badge className="bg-orange-100 text-orange-600 mb-4 hover:scale-105 transition-transform duration-300">
-              Video
-            </Badge>
+          <div className="text-center mb-16">
+            <Badge className="bg-orange-100 text-orange-600 mb-4">Video</Badge>
             <h2 className="text-3xl lg:text-4xl font-bold mb-4 text-gray-800">Lihat Produk Kami dalam Aksi</h2>
             <p className="text-gray-600 max-w-2xl mx-auto">
               Saksikan langsung kualitas dan performa alat pertanian yang kami jual melalui video demonstrasi
             </p>
-          </AnimatedSection>
+          </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
             {[
@@ -434,12 +432,7 @@ export default function HomePage() {
                 title: "Alat Pertanian Modern",
               },
             ].map((video, index) => (
-              <AnimatedSection
-                key={index}
-                animation="scaleIn"
-                delay={index * 100}
-                className="relative rounded-2xl overflow-hidden shadow-lg bg-gray-900 hover:shadow-2xl transition-all duration-500 hover:scale-105 group"
-              >
+              <div key={index} className="relative rounded-2xl overflow-hidden shadow-lg bg-gray-900">
                 <div className="aspect-[9/16]">
                   <iframe
                     src={`https://www.youtube.com/embed/${video.id}`}
@@ -450,17 +443,16 @@ export default function HomePage() {
                     className="w-full h-full"
                   ></iframe>
                 </div>
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-              </AnimatedSection>
+              </div>
             ))}
           </div>
 
-          <AnimatedSection animation="fadeInUp" delay={400} className="text-center">
+          <div className="text-center">
             <p className="text-gray-600 mb-4">Ingin melihat lebih banyak video produk kami?</p>
             <a href="https://www.youtube.com/@sahabattanimadiun/shorts" target="_blank" rel="noopener noreferrer">
               <Button
                 variant="outline"
-                className="border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-white hover:scale-105 transition-all duration-300 hover:shadow-lg"
+                className="border-orange-500 text-orange-500 hover:bg-orange-500 hover:text-white"
               >
                 <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
@@ -468,10 +460,10 @@ export default function HomePage() {
                 Kunjungi Channel YouTube Kami
               </Button>
             </a>
-          </AnimatedSection>
+          </div>
         </div>
       </section>
-
+      
       {/* About Section */}
       <section id="about" className="py-20">
         <div className="container mx-auto px-4">
